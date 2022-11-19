@@ -15,7 +15,7 @@ public class SelectFace : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !CubeState.AutoRotating)
         {
             _readCube.ReadState();
 
@@ -38,6 +38,7 @@ public class SelectFace : MonoBehaviour
                     if (cubeSide.Contains(face))
                     {
                         _cubeState.PickUp(cubeSide);
+                        cubeSide[4].transform.parent.GetComponent<PivotRotation>().RotateSide(cubeSide);
                     }
                 }
 

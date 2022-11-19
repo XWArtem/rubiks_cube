@@ -33,13 +33,10 @@ public class ReadCube : MonoBehaviour
         SetRayTransform();
 
         _cubeState = FindObjectOfType<CubeState>();
-
-    }
-
-    private void Update()
-    {
         ReadState();
+        CubeState.Started = true;
     }
+
 
     public void ReadState()
     {
