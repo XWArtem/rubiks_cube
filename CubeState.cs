@@ -12,4 +12,15 @@ public class CubeState : MonoBehaviour
     public List<GameObject> right = new List<GameObject>();
 
 
+    public void PickUp(List<GameObject> cubeSide)
+    {
+        foreach (GameObject face in cubeSide)
+        {
+            if (face != cubeSide[4])
+            {
+                face.transform.parent.transform.parent = cubeSide[4].transform.parent;
+            }
+        }
+    }
 }
+
