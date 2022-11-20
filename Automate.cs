@@ -17,7 +17,7 @@ public class Automate : MonoBehaviour
 
     private void Update()
     {
-        if (MoveList.Count > 0 && !CubeState.AutoRotating && CubeState.Started)
+        if (MoveList.Count > 0 && !CubeState.AutoRotating)
         {
             PerfomMove(MoveList[0]);
 
@@ -35,6 +35,7 @@ public class Automate : MonoBehaviour
             moves.Add(allMoves[randomMove]);
         }
         MoveList = moves;
+        //CubeState.IsSolving = true;
     }
 
     private void PerfomMove(string move)

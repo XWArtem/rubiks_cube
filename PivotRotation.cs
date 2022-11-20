@@ -25,9 +25,9 @@ public class PivotRotation : MonoBehaviour
         _cubeState = FindObjectOfType<CubeState>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        if (_isDragging)
+        if (_isDragging && !_autoRotating)
         {
             SpinSide(_activeSide);
             if (Input.GetMouseButtonUp(0))
@@ -49,11 +49,11 @@ public class PivotRotation : MonoBehaviour
         
         if(side == _cubeState.front)
         {
-            _rotation.x = (mouseOffset.x + mouseOffset.y) * _dragDistance * -1;
+            _rotation.x = (mouseOffset.x - mouseOffset.y) * _dragDistance * -1;
         }
         if (side == _cubeState.up)
         {
-            _rotation.y = (mouseOffset.x + mouseOffset.y) * _dragDistance * 1;
+            _rotation.y = (mouseOffset.x + mouseOffset.y) * _dragDistance * -1;
         }
         if (side == _cubeState.down)
         {
@@ -65,7 +65,7 @@ public class PivotRotation : MonoBehaviour
         }
         if (side == _cubeState.left)
         {
-            _rotation.z = (mouseOffset.x + mouseOffset.y) * _dragDistance * 1;
+            _rotation.z = (mouseOffset.x - mouseOffset.y) * _dragDistance * 1;
         }
         if (side == _cubeState.right)
         {

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +11,6 @@ public class ReadCube : MonoBehaviour
     [SerializeField] private Transform _tRight;
 
     [SerializeField] private GameObject emptyGO;
-    //
 
     private List<GameObject> _frontRays = new List<GameObject>();
     private List<GameObject> _backRays = new List<GameObject>();
@@ -20,6 +18,13 @@ public class ReadCube : MonoBehaviour
     private List<GameObject> _downRays = new List<GameObject>();
     private List<GameObject> _leftRays = new List<GameObject>();
     private List<GameObject> _rightRays = new List<GameObject>();
+
+    private List<GameObject> _frontRaysStart = new List<GameObject>();
+    private List<GameObject> _backRaysStart = new List<GameObject>();
+    private List<GameObject> _upRaysStart = new List<GameObject>();
+    private List<GameObject> _downRaysStart = new List<GameObject>();
+    private List<GameObject> _leftRaysStart = new List<GameObject>();
+    private List<GameObject> _rightRaysStart = new List<GameObject>();
 
     private int _layerMask = 1 << 6;
 
@@ -34,9 +39,34 @@ public class ReadCube : MonoBehaviour
 
         _cubeState = FindObjectOfType<CubeState>();
         ReadState();
-        CubeState.Started = true;
+        RememberState();
+        //CubeState.Started = true;
+        //CubeState.IsSolving = false;
     }
 
+    private void RememberState()
+    {
+        _frontRaysStart = _frontRays;
+        _backRaysStart = _backRays;
+        _upRaysStart = _upRays;
+        _downRaysStart = _downRays;
+        _leftRaysStart = _leftRays;
+        _rightRaysStart = _rightRays;
+    }
+
+    private bool CheckState()
+    {
+        if (_frontRaysStart == _frontRays &&
+        _backRaysStart == _backRays &&
+        _upRaysStart == _upRays &&
+        _downRaysStart == _downRays &&
+        _leftRaysStart == _leftRays &&
+        _rightRaysStart == _rightRays)
+        {
+            return true;
+        }
+        else return false;
+    }
 
     public void ReadState()
     {
@@ -51,6 +81,12 @@ public class ReadCube : MonoBehaviour
         _cubeState.right = ReadFace(_rightRays, _tRight);
 
         _cubeMap.Set();
+
+        //if (CheckState() == true && CubeState.IsSolving)
+        //{
+        //    CubeState.IsSolving = false;
+        //    CubeState.Solved = true;
+        //}
     }
 
     private void SetRayTransform()

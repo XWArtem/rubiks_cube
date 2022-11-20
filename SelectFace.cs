@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,11 +6,6 @@ public class SelectFace : MonoBehaviour
     [SerializeField] private CubeState _cubeState;
     [SerializeField] private ReadCube _readCube;
     private int _layerMask = 1 << 6; // faceLayer
-
-    private void Start()
-    {
-
-    }
 
     private void Update()
     {
@@ -41,11 +35,7 @@ public class SelectFace : MonoBehaviour
                         cubeSide[4].transform.parent.GetComponent<PivotRotation>().RotateSide(cubeSide);
                     }
                 }
-
             }
-
         }
     }
-
-
 }
