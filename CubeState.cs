@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,22 +12,6 @@ public class CubeState : MonoBehaviour
 
     public static bool AutoRotating;
     public static bool Started;
-    //public static bool IsSolving;
-    //public static bool Solved
-    //{
-    //    get
-    //    {
-    //        return Solved;
-    //    }
-    //    set
-    //    {
-    //        if (value == true)
-    //        {
-    //            print("Solved!");
-    //        }
-    //        Solved = value;
-    //    }
-    //}
 
     public void PickUp(List<GameObject> cubeSide)
     {

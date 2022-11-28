@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Kociemba;
@@ -9,12 +8,14 @@ public class SolveTwoPhase : MonoBehaviour
     [SerializeField] CubeState _cubeState;
     private bool _doOnce = true;
 
+    private GameState _gameState = new GameState();
+
     private void Update()
     {
         if (CubeState.Started && _doOnce)
         {
-            _doOnce = false;
             Solver();
+            _doOnce = false;
         }
     }
 
@@ -28,10 +29,6 @@ public class SolveTwoPhase : MonoBehaviour
         // solve the cube
         string info = "";
 
-        // first table building
-        //string solution = SearchRunTime.solution(moveString, out info, buildTables: true);
-
-        // otherwise
         string solution = Search.solution(moveString, out info);
 
         List<string> solutionList = StringToList(solution);
@@ -39,6 +36,12 @@ public class SolveTwoPhase : MonoBehaviour
         Automate.MoveList = solutionList;
 
         print(info);
+
+        if (!_doOnce)
+        {
+            _gameState.ChangeGameState(GameStates.isSolving);
+            print("Is solving now");
+        }
     }
 
     private List<string> StringToList(string solution)
@@ -47,6 +50,4 @@ public class SolveTwoPhase : MonoBehaviour
             (solution.Split(new string[] {" "}, System.StringSplitOptions.RemoveEmptyEntries));
         return solutionList;
     }
-
-
 }

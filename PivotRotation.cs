@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -121,7 +120,5 @@ public class PivotRotation : MonoBehaviour
             _autoRotating = false;
             _isDragging = false;
         }
-
     }
-
 }

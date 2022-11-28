@@ -81,12 +81,6 @@ public class ReadCube : MonoBehaviour
         _cubeState.right = ReadFace(_rightRays, _tRight);
 
         _cubeMap.Set();
-
-        //if (CheckState() == true && CubeState.IsSolving)
-        //{
-        //    CubeState.IsSolving = false;
-        //    CubeState.Solved = true;
-        //}
     }
 
     private void SetRayTransform()

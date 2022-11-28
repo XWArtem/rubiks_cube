@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RotateBigCube : MonoBehaviour
@@ -108,6 +106,4 @@ public class RotateBigCube : MonoBehaviour
     {
         return _currentSwipe.y < 0f && _currentSwipe.x > 0f;
     }
-
-
 }
